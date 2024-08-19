@@ -48,7 +48,7 @@ const Footer: FunctionComponent<FooterType> = ({ className = "" }) => {
             rel="noopener noreferrer"
           >
             <img
-              className="h-[37px] w-[37px] relative min-h-[18px]"
+              className="h-[30px] w-[30px] relative min-h-[18px]"
               loading="lazy"
               alt="LinkedIn"
               src="/linkedin.svg"
