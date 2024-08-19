@@ -7,6 +7,10 @@ import Logos from "./Logos";
 import StProject from "./StProject";
 import NdProject from "./NdProject";
 import ExperienceSection from "./ExperienceSection";
+import RdProject from "./RdProject";
+import RthProject from "./RthProject";
+import FthProject from "./FthProject";
+import XthProject from "./XthProject";
 
 export type ProfileContainerType = {
   className?: string;
@@ -28,10 +32,9 @@ const ProfileContainer: FunctionComponent<ProfileContainerType> = ({
             <Title />
             <div className="self-stretch flex flex-row items-start justify-start text-lg text-secondary-text">
               <div className="w-[679px] relative tracking-[0.02em] font-light inline-block">
-                <p className="m-0">{`I am a seasoned full-stack software engineer with over `}</p>
-                <p className="m-0">{`8 years of professional experience, specializing in backend development. `}</p>
-                <p className="m-0">{`My expertise lies in crafting robust and scalable SaaS-based `}</p>
-                <p className="m-0">architectures on the Amazon AWS platform.</p>
+                <p className="m-0">{`A proficient software developer with over 3 years of experience `}</p>
+                <p className="m-0">{`and integration of decentralized applications and blockchain solutions. `}</p>
+                <p className="m-0">{`Highly skilled in building, testing and deploying smart contracts, performing security audits. `}</p>
               </div>
             </div>
           </div>
@@ -51,6 +54,7 @@ const ProfileContainer: FunctionComponent<ProfileContainerType> = ({
       <div className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-2 box-border gap-[27px] max-w-full text-secondary-text">
         <div className="self-stretch flex flex-row items-start justify-center py-0 pl-5 pr-7">
           <div className="flex flex-row items-start justify-start">
+          <section id = "projects"></section>
             <h1 className="m-0 relative text-inherit leading-[36px] uppercase font-extrabold font-[inherit] text-transparent !bg-clip-text [background:linear-gradient(180deg,_#ff8660,_#d5491d)] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] mq450:text-2xl mq450:leading-[21px] mq1050:text-9xl mq1050:leading-[29px]">
               Projects
             </h1>
@@ -59,11 +63,16 @@ const ProfileContainer: FunctionComponent<ProfileContainerType> = ({
         <div className="self-stretch flex flex-row flex-wrap items-start justify-center gap-[30px] max-w-full text-3xs">
           <StProject />
           <NdProject />
+          <RdProject />
+          <RthProject />
+          <FthProject />
+          <XthProject />
         </div>
       </div>
       <div className="self-stretch flex flex-col items-start justify-start gap-[57px] max-w-full mq450:gap-7">
         <div className="self-stretch flex flex-row items-start justify-center py-0 pl-5 pr-[21px]">
           <div className="flex flex-row items-start justify-start">
+            <section id = "experience"></section>
             <h1 className="m-0 relative text-inherit leading-[36px] uppercase font-extrabold font-[inherit] text-transparent !bg-clip-text [background:linear-gradient(180deg,_#5badff,_#1372d1)] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] mq450:text-2xl mq450:leading-[21px] mq1050:text-9xl mq1050:leading-[29px]">
               Experience
             </h1>

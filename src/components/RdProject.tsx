@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
 
-export type NdProjectType = {
+export type RdProjectType = {
   className?: string;
 };
 
-const NdProject: FunctionComponent<NdProjectType> = ({ className = "" }) => {
+const RdProject: FunctionComponent<RdProjectType> = ({ className = "" }) => {
   return (
     <div
       className={`flex-1 flex flex-col items-start justify-start pt-0 px-0 pb-3.5 box-border relative gap-3 min-w-[253px] max-w-full text-left text-3xs text-secondary-text font-inter ${className}`}
@@ -14,15 +14,15 @@ const NdProject: FunctionComponent<NdProjectType> = ({ className = "" }) => {
         className="self-stretch h-[235px] relative rounded-t-lg rounded-b-none max-w-full overflow-hidden shrink-0 object-cover z-[1]"
         loading="lazy"
         alt=""
-        src="/projectthumbnail2@2x.png"
+        src="/projectthumbnail2@3x.jpg"
       />
       <div className="flex flex-row items-start justify-start py-0 px-[23px]">
         <div className="flex flex-col items-start justify-start gap-px z-[1]">
           <div className="relative leading-[19px] uppercase font-extrabold inline-block min-w-[109.8px]">
-            Captable Management
+            Token exchange and ICO
           </div>
           <div className="relative text-lgi leading-[20px] uppercase font-extrabold text-primary-color">
-            Tabla
+            Orderbook
           </div>
         </div>
       </div>
@@ -30,4 +30,4 @@ const NdProject: FunctionComponent<NdProjectType> = ({ className = "" }) => {
   );
 };
 
-export default NdProject;
+export default RdProject;
