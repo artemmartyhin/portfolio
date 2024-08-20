@@ -18,13 +18,11 @@ const Footer: FunctionComponent<FooterType> = ({ className = "" }) => {
         <div className="flex flex-col items-start justify-start gap-[22px]">
           <div className="relative tracking-[0.02em] font-light z-[1]">
             <p className="m-0">
-              A proficient software developer with over 3 years of experience
-              and integration of decentralized applications and blockchain
-              solutions.
+              Interested in collaborating on a project or need expertise in
+              blockchain development? Want to share your thoughts or the ideas?
             </p>
             <p className="m-0">
-              Highly skilled in building, testing and deploying smart contracts,
-              performing security audits.
+              Let's connect! Feel free to reach out to me via email or social media.
             </p>
           </div>
           <div className="flex flex-row items-start justify-start gap-[5.5px]">
