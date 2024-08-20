@@ -8,6 +8,7 @@ const RdProject: FunctionComponent<RdProjectType> = ({ className = "" }) => {
   return (
     <div
       className={`flex-1 flex flex-col items-start justify-start pt-0 px-0 pb-3.5 box-border relative gap-3 min-w-[253px] max-w-full text-left text-3xs text-secondary-text font-inter ${className}`}
+      onClick={() => window.open("https://www.orderbook.io/", "_blank")}
     >
       <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-lg bg-card-color" />
       <img
