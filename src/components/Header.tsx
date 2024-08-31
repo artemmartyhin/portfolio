@@ -48,6 +48,12 @@ const Header: FunctionComponent<HeaderType> = ({ className = "" }) => {
           >
             Contact
           </a>
+          <a
+            href="/news"
+            className="[text-decoration:none] w-[200] relative tracking-[0.02em] font-semibold text-[inherit] flex items-center justify-center shrink-0 min-w-[64.6px]"
+          >
+            The Crypto Times
+          </a>
         </nav>
       </nav>
     </header>

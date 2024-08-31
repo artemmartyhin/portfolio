@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import WebDesign from "./pages/WebDesign";
+import Newspaper from "./components/Newspaper";
 
 function App() {
   const action = useNavigationType();
@@ -46,6 +47,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WebDesign />} />
+      <Route path="/news" element={<Newspaper />} />
     </Routes>
   );
 }

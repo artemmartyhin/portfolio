@@ -1,0 +1,162 @@
+/* Container and overall layout */
+.newspaper-container {
+  font-family: 'Georgia', serif;
+  background-color: #f5f5f5;
+  padding: 30px;
+  max-width: 2000px;
+  margin: auto;
+}
+
+/* Header styling to mimic a newspaper masthead */
+.newspaper-header {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 20px;
+}
+
+.newspaper-header h1 {
+  font-size: 4em;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: #000;
+  letter-spacing: 1px;
+}
+
+.newspaper-header .newspaper-date {
+  font-size: 1.2em;
+  font-style: italic;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Flipbook container and shadow effect */
+.flipbook-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.newspaper {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  font-family: 'Georgia', serif;
+}
+
+/* Page styling to create a realistic look */
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #ffffff;
+  padding: 60px;
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  box-sizing: border-box;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  margin: 5px; /* Ensure spacing between pages */
+}
+
+.page-content {
+  width: 100%;
+}
+
+/* Article title styling to look like a newspaper headline */
+.page-content h2.article-title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Body text styled like newspaper text, with indentation */
+.page-content p.article-body {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  text-align: justify;
+  text-indent: 40px;
+  line-height: 1.6;
+}
+
+/* Decorative horizontal lines to mimic newspaper elements */
+.decorative-element {
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  margin: 20px 0;
+}
+
+/* Drop cap style for the first letter of each article */
+.drop-cap::first-letter {
+  font-size: 3em;
+  font-weight: bold;
+  float: left;
+  margin-right: 10px;
+  line-height: 1;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* References section styled to resemble footnotes */
+.references {
+  margin-top: 20px;
+  font-size: 1em;
+  color: #555;
+}
+
+.references h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.references ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.references ul li {
+  margin-bottom: 5px;
+}
+
+.references ul li a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.references ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Page footer for additional information, styled as newspaper footers */
+.page-footer {
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Ensure pages do not overlap */
+.page {
+  margin: 0 10px;
+}
+
+.page:nth-child(odd) {
+  transform: rotateY(-2deg) translateX(15px);
+}
+
+.page:nth-child(even) {
+  transform: rotateY(2deg) translateX(-15px);
+}
