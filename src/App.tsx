@@ -6,7 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import WebDesign from "./pages/WebDesign";
-import Newspaper from "./components/Newspaper";
+import Newspaper from "./pages/Newspaper";
 
 function App() {
   const action = useNavigationType();
