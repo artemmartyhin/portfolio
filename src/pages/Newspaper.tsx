@@ -26,6 +26,21 @@ const Newspaper: React.FC = () => {
     fetchData();
   }, []);
 
+  // Function to validate and clean up URLs
+  const validateAndCleanURL = (url: string): string | null => {
+    const cleanedURL = url.match(/https?:\/\/[^\s]+/i)?.[0];
+    if (cleanedURL) {
+      try {
+        new URL(cleanedURL);
+        return cleanedURL;
+      } catch (error) {
+        console.error("Invalid URL:", cleanedURL);
+        return null;
+      }
+    }
+    return null;
+  };
+
   return (
     <div className="newspaper-container">
       <header className="newspaper-header">
@@ -58,36 +73,37 @@ const Newspaper: React.FC = () => {
           showPageCorners={true}
           disableFlipByClick={false}
         >
-          {articles.map((article, index) => {
-            console.log(`References for ${article.token}:`, article.references);
-
-            return (
-              <div className="page" key={index}>
-                <div className="page-content">
-                  <h2 className="article-title">
-                    {article.token} ({article.symbol})
-                  </h2>
-                  <p className="article-body drop-cap">{article.summary}</p>
-                  <div className="references">
-                    <h3>References:</h3>
-                    <ul>
-                      {article.references.map((ref, i) => (
+          {articles.map((article, index) => (
+            <div className="page" key={index}>
+              <div className="page-content">
+                <h2 className="article-title">
+                  {article.token} ({article.symbol})
+                </h2>
+                <p className="article-body drop-cap">{article.summary}</p>
+                <div className="references">
+                  <h3>References:</h3>
+                  <ul>
+                    {article.references.map((ref, i) => {
+                      const validURL = validateAndCleanURL(ref);
+                      return validURL ? (
                         <li key={i}>
                           <a
-                            href={ref}
+                            href={validURL}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            {ref}
+                            {validURL}
                           </a>
                         </li>
-                      ))}
-                    </ul>
-                  </div>
+                      ) : (
+                        <li key={i}>Invalid reference link</li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </HTMLFlipBook>
       </div>
     </div>
