@@ -52,7 +52,7 @@ const Newspaper: React.FC = () => {
     }
     return null;
   };
-  
+
   return (
     <div className="newspaper-container">
       <header className="newspaper-header">
@@ -65,9 +65,9 @@ const Newspaper: React.FC = () => {
           width={isMobile ? 320 : 800}
           height={isMobile ? 480 : 1000}
           minWidth={isMobile ? 320 : 600}
-          maxWidth={isMobile ? 360 : 1200}
+          maxWidth={isMobile ? 320 : 1200}
           minHeight={isMobile ? 480 : 800}
-          maxHeight={isMobile ? 540 : 1800}
+          maxHeight={isMobile ? 480 : 1800}
           maxShadowOpacity={0.5}
           className="newspaper"
           size="stretch"
@@ -75,7 +75,7 @@ const Newspaper: React.FC = () => {
           drawShadow={true}
           flippingTime={1000}
           useMouseEvents={true}
-          usePortrait={isMobile} 
+          usePortrait={isMobile}
           startZIndex={0}
           autoSize={true}
           showCover={false}
@@ -84,7 +84,11 @@ const Newspaper: React.FC = () => {
           mobileScrollSupport={true}
           showPageCorners={true}
           disableFlipByClick={false}
-          style={{ margin: "0 auto" }}
+          style={{
+            margin: "0 auto",
+            transform: isMobile ? "scale(0.8)" : "scale(1)",
+            transformOrigin: "top center",
+          }}
         >
           {articles.map((article, index) => (
             <div className="page" key={index}>
