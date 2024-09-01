@@ -16,7 +16,7 @@ const Newspaper: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get("http://127.0.0.1:8066/crypto-summary");
+        const result = await axios.get("https://the-crypto-times.onrender.com/crypto-summary");
         console.log("Data fetched successfully:", result.data);
         setArticles(result.data);
       } catch (error) {
