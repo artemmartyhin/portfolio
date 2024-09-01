@@ -115,7 +115,7 @@
 /* References section styled to resemble footnotes */
 .references {
   margin-top: 20px;
-  font-size: 0.7em;
+  font-size: 0.9em;
   color: #555;
 }
 
@@ -135,7 +135,7 @@
 
 .references ul li {
   margin-bottom: 5px;
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 .references ul li a {
