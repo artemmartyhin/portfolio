@@ -9,13 +9,12 @@ const ExperienceSection: FunctionComponent<ExperienceSectionType> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col items-start justify-start gap-4 text-left text-primary-color font-poppins ${className}`}
+      className={`flex flex-col items-center justify-center gap-6 text-left text-primary-color font-poppins w-full ${className}`}
     >
-      {/* Experience Card */}
       {experiences.map((experience) => (
         <div
           key={experience.company}
-          className="group w-full flex flex-col items-start p-3 rounded-lg shadow-lg transition-transform duration-300 transform hover:-translate-y-1"
+          className="group w-full max-w-4xl flex flex-col items-start p-4 rounded-lg shadow-lg transition-transform duration-300 transform hover:-translate-y-1 mx-auto"
         >
           <div className="flex flex-wrap items-center gap-2 w-full">
             <img
@@ -33,10 +32,12 @@ const ExperienceSection: FunctionComponent<ExperienceSectionType> = ({
               </div>
             </div>
           </div>
-          <div className="mt-1 text-xs text-gray-100 text-[17px] leading-snug">
-            <ul className="list-disc pl-3">
+          <div className="mt-2 text-gray-100 text-[17px] leading-snug">
+            <ul className="list-disc pl-4 space-y-2 text-[14px]">
               {experience.responsibilities.map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index} className="text-white">
+                  {item}
+                </li>
               ))}
             </ul>
           </div>
