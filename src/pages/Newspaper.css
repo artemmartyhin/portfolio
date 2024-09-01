@@ -115,12 +115,12 @@
 /* References section styled to resemble footnotes */
 .references {
   margin-top: 20px;
-  font-size: 1em;
+  font-size: 0.7em;
   color: #555;
 }
 
 .references h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
   border-top: 1px solid #ddd;
   padding-top: 10px;
@@ -135,6 +135,7 @@
 
 .references ul li {
   margin-bottom: 5px;
+  font-size: 0.7em;
 }
 
 .references ul li a {
