@@ -4,14 +4,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   @apply leading-[normal] m-0;
 }
+
 *,
 ::before,
 ::after {
   border-width: 0;
 }
+
 html {
   scroll-behavior: smooth;
+}
+
+/* Custom gradient transition using pseudo-elements */
+.group {
+  position: relative;
+  overflow: hidden;
+  background-color: #4f46e5; /* Start with the same color as the gradient */
+  transition: background-color 0.5s ease-in-out;
+}
+
+.group::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right, #4f46e5, #8b5cf6, #ec4899);
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  z-index: 0;
+}
+
+.group:hover {
+  background-color: #ec4899; /* Change the solid color on hover */
+}
+
+.group:hover::before {
+  opacity: 0; /* Fade out the gradient overlay */
+}
+
+.group > * {
+  position: relative;
+  z-index: 1;
 }
