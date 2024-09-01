@@ -16,7 +16,8 @@ const Newspaper: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get("https://the-crypto-times.onrender.com/crypto-summary");
+        const result = await axios.get("http://127.0.0.1:8066/crypto-summary");
+        console.log("Data fetched successfully:", result.data);
         setArticles(result.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -45,6 +46,7 @@ const Newspaper: React.FC = () => {
     <div className="newspaper-container">
       <header className="newspaper-header">
         <h1>The Crypto Times</h1>
+        <h2>AI powered daily crypto news</h2>
         <p className="newspaper-date">{new Date().toLocaleDateString()}</p>
       </header>
       <div className="flipbook-container">
