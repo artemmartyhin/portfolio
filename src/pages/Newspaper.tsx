@@ -62,12 +62,12 @@ const Newspaper: React.FC = () => {
       </header>
       <div className="flipbook-container">
         <HTMLFlipBook
-          width={isMobile ? 320 : 800}
-          height={isMobile ? 480 : 1000}
-          minWidth={isMobile ? 320 : 600}
-          maxWidth={isMobile ? 320 : 1200}
-          minHeight={isMobile ? 480 : 800}
-          maxHeight={isMobile ? 480 : 1800}
+          width={isMobile ? window.innerWidth : 800}
+          height={isMobile ? window.innerHeight : 1000}
+          minWidth={isMobile ? window.innerWidth : 600}
+          maxWidth={isMobile ? window.innerWidth : 1200}
+          minHeight={isMobile ? window.innerHeight : 800}
+          maxHeight={isMobile ? window.innerHeight : 1800}
           maxShadowOpacity={0.5}
           className="newspaper"
           size="stretch"
@@ -86,8 +86,7 @@ const Newspaper: React.FC = () => {
           disableFlipByClick={false}
           style={{
             margin: "0 auto",
-            transform: isMobile ? "scale(0.8)" : "scale(1)",
-            transformOrigin: "top center",
+            height: isMobile ? "100vh" : "auto",
           }}
         >
           {articles.map((article, index) => (
