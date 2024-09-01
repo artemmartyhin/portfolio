@@ -53,6 +53,20 @@ const Newspaper: React.FC = () => {
     return null;
   };
 
+  const formatDisplayableURL = (url: string): string => {
+    const cleanedURL = validateAndCleanURL(url);
+    if (cleanedURL) {
+      try {
+        const urlObj = new URL(cleanedURL);
+        return urlObj.hostname;
+      } catch (error) {
+        console.error("Error formatting URL:", cleanedURL);
+        return cleanedURL;
+      }
+    }
+    return url;
+  };
+
   return (
     <div className="newspaper-container">
       <header className="newspaper-header">
@@ -98,24 +112,27 @@ const Newspaper: React.FC = () => {
                 <p className="article-body drop-cap">{article.summary}</p>
                 <div className="references">
                   <h3>References:</h3>
-                  <ul>
-                    {article.references.map((ref, i) => {
-                      const validURL = validateAndCleanURL(ref);
-                      return validURL ? (
-                        <li key={i}>
-                          <a
-                            href={validURL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {validURL}
-                          </a>
-                        </li>
-                      ) : (
-                        <li key={i}>Invalid reference link</li>
-                      );
-                    })}
-                  </ul>
+                  <p>
+                    {article.references
+                      .map((ref, i) => {
+                        const displayURL = formatDisplayableURL(ref);
+                        const validURL = validateAndCleanURL(ref);
+                        return validURL ? (
+                          <span key={i}>
+                            <a
+                              href={validURL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {displayURL}
+                            </a>
+                            {i < article.references.length - 1 && ", "}
+                          </span>
+                        ) : (
+                          <span key={i}>Invalid reference link</span>
+                        );
+                      })}
+                  </p>
                 </div>
               </div>
             </div>
