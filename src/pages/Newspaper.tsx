@@ -52,7 +52,7 @@ const Newspaper: React.FC = () => {
     }
     return null;
   };
-
+  
   return (
     <div className="newspaper-container">
       <header className="newspaper-header">
@@ -62,12 +62,12 @@ const Newspaper: React.FC = () => {
       </header>
       <div className="flipbook-container">
         <HTMLFlipBook
-          width={isMobile ? 400 : 800}
-          height={isMobile ? 600 : 1000}
-          minWidth={isMobile ? 300 : 600}
-          maxWidth={isMobile ? 400 : 1200}
-          minHeight={isMobile ? 500 : 800}
-          maxHeight={isMobile ? 800 : 1800}
+          width={isMobile ? 320 : 800}
+          height={isMobile ? 480 : 1000}
+          minWidth={isMobile ? 320 : 600}
+          maxWidth={isMobile ? 360 : 1200}
+          minHeight={isMobile ? 480 : 800}
+          maxHeight={isMobile ? 540 : 1800}
           maxShadowOpacity={0.5}
           className="newspaper"
           size="stretch"
@@ -84,7 +84,7 @@ const Newspaper: React.FC = () => {
           mobileScrollSupport={true}
           showPageCorners={true}
           disableFlipByClick={false}
-          style={{ margin: "0 auto" }} // Explicitly passing the style prop
+          style={{ margin: "0 auto" }}
         >
           {articles.map((article, index) => (
             <div className="page" key={index}>
