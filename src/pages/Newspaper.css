@@ -170,7 +170,7 @@
   transform: rotateY(2deg) translateX(-15px);
 }
 
-/* Mobile Styles */
+/* Mobile Styles - Show only one page */
 @media (max-width: 768px) {
   .newspaper-header h1 {
     font-size: 2.5em;
@@ -189,8 +189,17 @@
     padding: 0 20px;
   }
 
+  .newspaper {
+    width: 100%;
+    height: auto;
+  }
+
   .page {
     padding: 20px;
+    margin: 0 auto;
+    transform: none !important;
+    width: 100% !important;
+    border: none;
   }
 
   .page-content h2.article-title {
@@ -221,5 +230,12 @@
 
   .page-footer {
     font-size: 12px;
+  }
+
+  /* Only show one page at a time on mobile */
+  .flipbook-container .newspaper .page {
+    display: block;
+    margin: 0 auto;
+    transform: none;
   }
 }

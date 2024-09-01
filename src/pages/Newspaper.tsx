@@ -12,6 +12,7 @@ interface Article {
 
 const Newspaper: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,15 @@ const Newspaper: React.FC = () => {
     };
 
     fetchData();
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const validateAndCleanURL = (url: string): string | null => {
@@ -52,12 +62,12 @@ const Newspaper: React.FC = () => {
       </header>
       <div className="flipbook-container">
         <HTMLFlipBook
-          width={600}
-          height={800}
-          minWidth={300}
-          maxWidth={1000}
-          minHeight={400}
-          maxHeight={1400}
+          width={isMobile ? 400 : 800}
+          height={isMobile ? 600 : 1000}
+          minWidth={isMobile ? 300 : 600}
+          maxWidth={isMobile ? 400 : 1200}
+          minHeight={isMobile ? 500 : 800}
+          maxHeight={isMobile ? 800 : 1800}
           maxShadowOpacity={0.5}
           className="newspaper"
           size="stretch"
@@ -65,8 +75,7 @@ const Newspaper: React.FC = () => {
           drawShadow={true}
           flippingTime={1000}
           useMouseEvents={true}
-          style={{ margin: "0 auto" }}
-          usePortrait={true}
+          usePortrait={isMobile} 
           startZIndex={0}
           autoSize={true}
           showCover={false}
@@ -75,6 +84,7 @@ const Newspaper: React.FC = () => {
           mobileScrollSupport={true}
           showPageCorners={true}
           disableFlipByClick={false}
+          style={{ margin: "0 auto" }} // Explicitly passing the style prop
         >
           {articles.map((article, index) => (
             <div className="page" key={index}>
