@@ -16,7 +16,9 @@ const Newspaper: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get("https://the-crypto-times.onrender.com/crypto-summary");
+        const result = await axios.get(
+          "https://the-crypto-times.onrender.com/crypto-summary"
+        );
         console.log("Data fetched successfully:", result.data);
         setArticles(result.data);
       } catch (error) {
@@ -27,7 +29,6 @@ const Newspaper: React.FC = () => {
     fetchData();
   }, []);
 
-  // Function to validate and clean up URLs
   const validateAndCleanURL = (url: string): string | null => {
     const cleanedURL = url.match(/https?:\/\/[^\s]+/i)?.[0];
     if (cleanedURL) {
@@ -51,12 +52,12 @@ const Newspaper: React.FC = () => {
       </header>
       <div className="flipbook-container">
         <HTMLFlipBook
-          width={800}
-          height={1000}
-          minWidth={600}
-          maxWidth={1200}
-          minHeight={800}
-          maxHeight={1800}
+          width={600}
+          height={800}
+          minWidth={300}
+          maxWidth={1000}
+          minHeight={400}
+          maxHeight={1400}
           maxShadowOpacity={0.5}
           className="newspaper"
           size="stretch"

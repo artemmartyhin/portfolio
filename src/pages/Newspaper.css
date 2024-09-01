@@ -169,3 +169,57 @@
 .page:nth-child(even) {
   transform: rotateY(2deg) translateX(-15px);
 }
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .newspaper-header h1 {
+    font-size: 2.5em;
+  }
+
+  .newspaper-header h2 {
+    font-size: 1.2em;
+  }
+
+  .newspaper-header .newspaper-date {
+    font-size: 1em;
+  }
+
+  .flipbook-container {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .page {
+    padding: 20px;
+  }
+
+  .page-content h2.article-title {
+    font-size: 1.8em;
+  }
+
+  .page-content p.article-body {
+    font-size: 1em;
+    text-indent: 20px;
+  }
+
+  .drop-cap::first-letter {
+    font-size: 2.5em;
+    margin-right: 8px;
+  }
+
+  .references {
+    font-size: 0.8em;
+  }
+
+  .references h3 {
+    font-size: 1em;
+  }
+
+  .references ul li {
+    font-size: 0.8em;
+  }
+
+  .page-footer {
+    font-size: 12px;
+  }
+}
