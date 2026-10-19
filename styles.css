@@ -149,6 +149,7 @@ body::before {
   gap: clamp(2rem, 5vw, 4rem);
   align-items: end;
   padding-block: clamp(3rem, 8vw, 7rem) clamp(3rem, 7vw, 6rem);
+  overflow: visible;
 }
 @media (min-width: 900px) {
   .hero-inner { grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr); }
@@ -184,26 +185,31 @@ body::before {
 .social a { color: var(--fg-3); transition: color 120ms; }
 .social a:hover { color: var(--accent-ink); }
 
-.portrait {
-  margin: 0; position: relative; max-width: 420px; width: 100%; justify-self: end;
+.kiwi {
+  position: relative; width: 100%; max-width: 460px; justify-self: end; align-self: end;
+  margin-bottom: calc(-1 * clamp(3rem, 7vw, 6rem) - 16px);   /* bleed off the hero's bottom edge */
+  transform-origin: 50% 100%;
+  animation: bob 1.9s ease-in-out infinite;
+  will-change: transform;
 }
-.portrait::before {
-  content: ""; position: absolute; inset: 14px -14px -14px 14px;
-  border: 1px solid var(--accent); border-radius: 26px; opacity: 0.7; z-index: 0;
+.kiwi::before {
+  content: ""; position: absolute; left: 10%; right: 10%; bottom: 6%; height: 18%;
+  border-radius: 50%; z-index: 0;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(var(--field-write), 0.28), transparent 70%);
+  filter: blur(14px);
 }
-.portrait img {
-  position: relative; z-index: 1; width: 100%; aspect-ratio: 1; object-fit: cover;
-  border-radius: 24px; border: 1px solid var(--line-2);
-  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7);
-  background: var(--surface);
+.kiwi picture, .kiwi img { display: block; width: 100%; height: auto; position: relative; z-index: 1; user-select: none; -webkit-user-drag: none; }
+.kiwi img {
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55)); transition: transform 300ms ease-out;
+  mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
 }
-.portrait figcaption {
-  position: relative; z-index: 1;
-  display: flex; justify-content: space-between; gap: 1rem;
-  margin-top: 1.1rem; padding-top: 0.75rem; border-top: 1px solid var(--line);
-  font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-3);
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-1.6deg); }
 }
-@media (max-width: 899px) { .portrait { max-width: 300px; justify-self: start; } }
+@media (max-width: 899px) { .kiwi { max-width: 320px; justify-self: start; margin-bottom: calc(-1 * clamp(3rem, 7vw, 6rem) - 16px); } }
+@media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } }
 
 /* ---------- marquee ---------- */
 .marquee {

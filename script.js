@@ -115,4 +115,19 @@
   setInterval(tick, 12000);
 })();
 
+/* Kiwi follows the pointer a little (desktop only). */
+(function () {
+  var k = document.getElementById('kiwi');
+  if (!k || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var img = k.querySelector('img'), hero = k.closest('.hero');
+  hero.addEventListener('pointermove', function (e) {
+    var r = k.getBoundingClientRect();
+    var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+    var dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+    img.style.transform = 'rotate(' + (dx * 5).toFixed(2) + 'deg) translate(' + (dx * 10).toFixed(1) + 'px,' + (dy * 6).toFixed(1) + 'px)';
+  });
+  hero.addEventListener('pointerleave', function () { img.style.transform = ''; });
+})();
+
 document.getElementById('year').textContent = new Date().getFullYear();
