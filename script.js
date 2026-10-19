@@ -115,66 +115,88 @@
   setInterval(tick, 12000);
 })();
 
-/* Kiwi looks around: nine head poses from a sprite sheet (0..8, row-major,
-   4 = straight ahead). Follows the pointer on desktop; when idle, glances at
-   a random direction now and then and comes back to centre. */
+/* Kiwi looks around. Gaze is a point (u, v) in [-1, 1]^2 that eases toward a
+   target every frame; the nine poses of the sprite sheet are blended with
+   bilinear weights at that point, so there is never a hard switch. The stack
+   also shifts and tilts a little toward the gaze. Target follows the pointer
+   on desktop; when idle it wanders to a random direction and drifts back. */
 (function () {
   var k = document.getElementById('kiwi');
-  if (!k) return;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
-  var frames = {}, cur = 4, lastSwitch = 0, idleTimer = null, glanceTimer = null, hover = false;
-  k.querySelectorAll('.kf').forEach(function (el) { frames[el.getAttribute('data-f')] = el; });
+  if (!k || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stack = k.querySelector('.kstack');
+  var layers = [];
+  k.querySelectorAll('.kf').forEach(function (el) { layers[+el.getAttribute('data-f')] = el; });
 
-  function show(f, now) {
-    now = now || performance.now();
-    if (f === cur) return;
-    if (now - lastSwitch < 160) return;        /* no flicker between neighbours */
-    frames[cur].classList.remove('is-on');
-    frames[f].classList.add('is-on');
-    cur = f; lastSwitch = now;
+  var u = 0, v = 0, tu = 0, tv = 0, ease = 0.06, hover = false, idleTimer = null, raf = 0;
+  var w = [0, 0, 0, 0, 0, 0, 0, 0, 0], lastOp = [0, 0, 0, 0, 1, 0, 0, 0, 0];
+
+  function smooth(t) { return t * t * (3 - 2 * t); }
+
+  function paint() {
+    var cx = u + 1, ry = v + 1;                       /* 0..2 across the grid */
+    var i0 = Math.min(1, Math.floor(cx)), j0 = Math.min(1, Math.floor(ry));
+    var fx = smooth(cx - i0), fy = smooth(ry - j0);
+    for (var n = 0; n < 9; n++) w[n] = 0;
+    w[j0 * 3 + i0] = (1 - fx) * (1 - fy);
+    w[j0 * 3 + i0 + 1] = fx * (1 - fy);
+    w[(j0 + 1) * 3 + i0] = (1 - fx) * fy;
+    w[(j0 + 1) * 3 + i0 + 1] = fx * fy;
+    /* "over" compositing: layer opacity = its weight over the sum so far */
+    var sum = 0;
+    for (var m = 0; m < 9; m++) {
+      sum += w[m];
+      var a = sum > 0.0005 ? w[m] / sum : 0;
+      if (Math.abs(a - lastOp[m]) > 0.002) { layers[m].style.opacity = a.toFixed(3); lastOp[m] = a; }
+    }
+    stack.style.transform = 'translate(' + (u * 9).toFixed(1) + 'px,' + (v * 5).toFixed(1) + 'px) rotate(' + (u * 2.2).toFixed(2) + 'deg)';
   }
 
-  /* idle: look somewhere, hold, come back, wait */
-  function scheduleGlance(delay) {
-    clearTimeout(glanceTimer);
-    glanceTimer = setTimeout(function () {
+  function tick() {
+    u += (tu - u) * ease; v += (tv - v) * ease;
+    paint();
+    if (Math.abs(tu - u) > 0.002 || Math.abs(tv - v) > 0.002) raf = requestAnimationFrame(tick);
+    else { u = tu; v = tv; paint(); raf = 0; }
+  }
+  function go(x, y, e) {
+    tu = Math.max(-1, Math.min(1, x)); tv = Math.max(-1, Math.min(1, y)); ease = e;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  /* idle wander: look somewhere, hold, drift back, wait */
+  var glance = null;
+  function wander(delay) {
+    clearTimeout(glance);
+    glance = setTimeout(function () {
       if (hover) return;
-      var options = [0, 1, 2, 3, 5, 6, 7, 8];
-      var f = options[Math.floor(Math.random() * options.length)];
-      show(f);
-      var hold = 700 + Math.random() * 900;
-      if (Math.random() < 0.3) {              /* sometimes a two-step look */
-        setTimeout(function () { if (!hover) show([3, 5][Math.floor(Math.random() * 2)]); }, hold);
-        hold += 600;
+      var ang = Math.random() * Math.PI * 2, r = 0.7 + Math.random() * 0.3;
+      go(Math.cos(ang) * r, Math.sin(ang) * r * 0.9, 0.045);
+      var hold = 900 + Math.random() * 1100;
+      if (Math.random() < 0.35) {
+        setTimeout(function () { if (!hover) go(-Math.cos(ang) * 0.8, Math.sin(ang) * 0.3, 0.04); }, hold);
+        hold += 1100;
       }
-      setTimeout(function () { if (!hover) show(4); }, hold);
-      scheduleGlance(2200 + Math.random() * 3200);
+      setTimeout(function () { if (!hover) go(0, 0, 0.035); }, hold);
+      wander(2600 + Math.random() * 3400);
     }, delay);
   }
 
-  /* pointer: pick the pose that faces the cursor */
-  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (fine) {
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     var hero = k.closest('.hero');
     hero.addEventListener('pointermove', function (e) {
       var r = k.getBoundingClientRect();
-      var ox = r.left + r.width * 0.5, oy = r.top + r.height * 0.42;   /* roughly the head */
-      var dx = (e.clientX - ox) / r.width, dy = (e.clientY - oy) / r.height;
-      var t = 0.28;
-      var c = dx < -t ? 0 : dx > t ? 2 : 1;
-      var rr = dy < -t ? 0 : dy > t ? 2 : 1;
+      var ox = r.left + r.width * 0.5, oy = r.top + r.height * 0.42;     /* about the head */
       hover = true;
-      show(rr * 3 + c);
+      go((e.clientX - ox) / (r.width * 0.7), (e.clientY - oy) / (r.height * 0.7), 0.11);
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(function () { hover = false; show(4); scheduleGlance(1500); }, 2500);
+      idleTimer = setTimeout(function () { hover = false; go(0, 0, 0.04); wander(1800); }, 3000);
     });
     hero.addEventListener('pointerleave', function () {
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(function () { hover = false; show(4); scheduleGlance(1200); }, 600);
+      idleTimer = setTimeout(function () { hover = false; go(0, 0, 0.04); wander(1500); }, 400);
     });
   }
-  scheduleGlance(1800);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(glance); else if (!hover) wander(800); });
+  wander(1600);
 })();
 
 document.getElementById('year').textContent = new Date().getFullYear();

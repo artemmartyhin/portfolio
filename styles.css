@@ -191,7 +191,6 @@ body::before {
   transform-origin: 50% 100%;
   animation: bob 1.9s ease-in-out infinite;
   will-change: transform;
-  transition: transform 300ms ease-out;
 }
 .kiwi::before {
   content: ""; position: absolute; left: 10%; right: 10%; bottom: 6%; height: 18%;
@@ -199,17 +198,19 @@ body::before {
   background: radial-gradient(50% 50% at 50% 50%, rgba(var(--field-write), 0.28), transparent 70%);
   filter: blur(14px);
 }
-/* nine frames from one 3x3 sprite sheet, cross-faded by toggling .is-on */
-.kf {
-  position: absolute; inset: 0; z-index: 1; opacity: 0;
-  background-image: url("/assets/kiwi-sheet.webp");
-  background-size: 300% 300%; background-repeat: no-repeat;
+/* nine poses from one 3x3 sprite sheet, blended continuously by script */
+.kstack {
+  position: absolute; inset: 0; z-index: 1;
   filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55));
   mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
-  transition: opacity 320ms ease;
+  will-change: transform;
 }
-.kf.is-on { opacity: 1; }
+.kf {
+  position: absolute; inset: 0; opacity: 0;
+  background-image: url("/assets/kiwi-sheet.webp");
+  background-size: 300% 300%; background-repeat: no-repeat;
+}
 .kf[data-f="0"] { background-position: 0% 0%; }   .kf[data-f="1"] { background-position: 50% 0%; }   .kf[data-f="2"] { background-position: 100% 0%; }
 .kf[data-f="3"] { background-position: 0% 50%; }  .kf[data-f="4"] { background-position: 50% 50%; }  .kf[data-f="5"] { background-position: 100% 50%; }
 .kf[data-f="6"] { background-position: 0% 100%; } .kf[data-f="7"] { background-position: 50% 100%; } .kf[data-f="8"] { background-position: 100% 100%; }
@@ -218,7 +219,7 @@ body::before {
   50% { translate: 0 -10px; }
 }
 @media (max-width: 899px) { .kiwi { max-width: 320px; justify-self: start; } }
-@media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } .kf { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } }
 
 /* ---------- marquee ---------- */
 .marquee {
