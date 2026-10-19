@@ -211,7 +211,7 @@ body::before {
 }
 .kf {
   position: absolute; inset: 0;
-  background-image: url("/assets/kiwi-sheet.webp");
+  background-image: url("/assets/kiwi-sheet.edd02bff.webp");
   background-size: 700% 500%; background-repeat: no-repeat;
   background-position: 50% 50%;       /* column 3, row 2: straight ahead */
   image-rendering: auto;
