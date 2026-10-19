@@ -190,7 +190,7 @@ body::before {
 .social a:hover { color: var(--accent-ink); }
 
 .kiwi {
-  position: relative; width: 100%; max-width: 480px; aspect-ratio: 270 / 240; justify-self: end; align-self: end;
+  position: relative; width: 100%; max-width: 412px; aspect-ratio: 216 / 223; justify-self: end; align-self: end;
   margin-bottom: calc(-1 * clamp(3rem, 7vw, 6rem) - 16px);   /* bleed off the hero's bottom edge */
   transform-origin: 50% 100%;
   animation: bob 1.9s ease-in-out infinite;
@@ -206,8 +206,8 @@ body::before {
 .kstack {
   position: absolute; inset: 0; z-index: 1;
   filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55));
-  mask-image: linear-gradient(to bottom, #000 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent 100%);
 }
 .kf {
   position: absolute; inset: 0;
@@ -220,7 +220,7 @@ body::before {
   0%, 100% { translate: 0 0; }
   50% { translate: 0 -10px; }
 }
-@media (max-width: 899px) { .kiwi { max-width: 340px; justify-self: start; } }
+@media (max-width: 899px) { .kiwi { max-width: 300px; justify-self: start; } }
 @media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } }
 
 /* ---------- marquee ---------- */
