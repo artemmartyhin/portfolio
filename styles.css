@@ -127,6 +127,8 @@ body::before {
 .top-nav { display: flex; align-items: center; gap: clamp(0.9rem, 2.5vw, 1.75rem); }
 .top-nav a { color: var(--fg-2); font-weight: 500; font-size: 0.95rem; transition: color 120ms; }
 .top-nav a:hover { color: var(--fg); }
+.top-ext { display: none; }
+@media (min-width: 640px) { .top-ext { display: inline; } }
 .top-cv {
   padding: 0.35rem 0.8rem; border: 1px solid var(--line-2); border-radius: 999px;
   color: var(--fg) !important;
@@ -188,7 +190,7 @@ body::before {
 .social a:hover { color: var(--accent-ink); }
 
 .kiwi {
-  position: relative; width: 100%; max-width: 400px; aspect-ratio: 210 / 240; justify-self: end; align-self: end;
+  position: relative; width: 100%; max-width: 480px; aspect-ratio: 270 / 240; justify-self: end; align-self: end;
   margin-bottom: calc(-1 * clamp(3rem, 7vw, 6rem) - 16px);   /* bleed off the hero's bottom edge */
   transform-origin: 50% 100%;
   animation: bob 1.9s ease-in-out infinite;
@@ -218,7 +220,7 @@ body::before {
   0%, 100% { translate: 0 0; }
   50% { translate: 0 -10px; }
 }
-@media (max-width: 899px) { .kiwi { max-width: 280px; justify-self: start; } }
+@media (max-width: 899px) { .kiwi { max-width: 340px; justify-self: start; } }
 @media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } }
 
 /* ---------- marquee ---------- */
@@ -374,13 +376,15 @@ body::before {
 }
 .contact-title { margin: 0; font-size: clamp(2.6rem, 8vw, 6rem); }
 .contact .lede { font-size: 1.15rem; }
-.contact-mail {
-  margin-top: 0.5rem; font-size: clamp(1.25rem, 3.6vw, 2.6rem); font-weight: 700;
-  color: var(--fg); overflow-wrap: anywhere; letter-spacing: -0.03em; line-height: 1.1;
-  border-bottom: 2px solid var(--accent); padding-bottom: 0.15em;
-  transition: color 140ms;
+.contact-main {
+  margin-top: 0.5rem; font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 800;
+  color: var(--fg); letter-spacing: -0.04em; line-height: 1; overflow-wrap: anywhere;
+  border-bottom: 3px solid var(--accent); padding-bottom: 0.1em; transition: color 140ms;
 }
-.contact-mail:hover { color: var(--accent-ink); }
+.contact-main:hover { color: var(--accent-ink); }
+.contact-sub { margin: 0.25rem 0 0; font-size: 0.8rem; color: var(--fg-3); display: flex; flex-wrap: wrap; gap: 0.3rem 0.5rem; }
+.contact-sub a { color: var(--fg-3); }
+.contact-sub a:hover { color: var(--accent-ink); }
 
 /* footer */
 .foot {
