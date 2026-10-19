@@ -186,11 +186,12 @@ body::before {
 .social a:hover { color: var(--accent-ink); }
 
 .kiwi {
-  position: relative; width: 100%; max-width: 460px; justify-self: end; align-self: end;
+  position: relative; width: 100%; max-width: 460px; aspect-ratio: 1; justify-self: end; align-self: end;
   margin-bottom: calc(-1 * clamp(3rem, 7vw, 6rem) - 16px);   /* bleed off the hero's bottom edge */
   transform-origin: 50% 100%;
   animation: bob 1.9s ease-in-out infinite;
   will-change: transform;
+  transition: transform 300ms ease-out;
 }
 .kiwi::before {
   content: ""; position: absolute; left: 10%; right: 10%; bottom: 6%; height: 18%;
@@ -198,18 +199,26 @@ body::before {
   background: radial-gradient(50% 50% at 50% 50%, rgba(var(--field-write), 0.28), transparent 70%);
   filter: blur(14px);
 }
-.kiwi picture, .kiwi img { display: block; width: 100%; height: auto; position: relative; z-index: 1; user-select: none; -webkit-user-drag: none; }
-.kiwi img {
-  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55)); transition: transform 300ms ease-out;
+/* nine frames from one 3x3 sprite sheet, cross-faded by toggling .is-on */
+.kf {
+  position: absolute; inset: 0; z-index: 1; opacity: 0;
+  background-image: url("/assets/kiwi-sheet.webp");
+  background-size: 300% 300%; background-repeat: no-repeat;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55));
   mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+  transition: opacity 320ms ease;
 }
+.kf.is-on { opacity: 1; }
+.kf[data-f="0"] { background-position: 0% 0%; }   .kf[data-f="1"] { background-position: 50% 0%; }   .kf[data-f="2"] { background-position: 100% 0%; }
+.kf[data-f="3"] { background-position: 0% 50%; }  .kf[data-f="4"] { background-position: 50% 50%; }  .kf[data-f="5"] { background-position: 100% 50%; }
+.kf[data-f="6"] { background-position: 0% 100%; } .kf[data-f="7"] { background-position: 50% 100%; } .kf[data-f="8"] { background-position: 100% 100%; }
 @keyframes bob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(-1.6deg); }
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
 }
-@media (max-width: 899px) { .kiwi { max-width: 320px; justify-self: start; margin-bottom: calc(-1 * clamp(3rem, 7vw, 6rem) - 16px); } }
-@media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } }
+@media (max-width: 899px) { .kiwi { max-width: 320px; justify-self: start; } }
+@media (prefers-reduced-motion: reduce) { .kiwi { animation: none; } .kf { transition: none; } }
 
 /* ---------- marquee ---------- */
 .marquee {

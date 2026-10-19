@@ -115,19 +115,66 @@
   setInterval(tick, 12000);
 })();
 
-/* Kiwi follows the pointer a little (desktop only). */
+/* Kiwi looks around: nine head poses from a sprite sheet (0..8, row-major,
+   4 = straight ahead). Follows the pointer on desktop; when idle, glances at
+   a random direction now and then and comes back to centre. */
 (function () {
   var k = document.getElementById('kiwi');
-  if (!k || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var img = k.querySelector('img'), hero = k.closest('.hero');
-  hero.addEventListener('pointermove', function (e) {
-    var r = k.getBoundingClientRect();
-    var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-    var dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-    img.style.transform = 'rotate(' + (dx * 5).toFixed(2) + 'deg) translate(' + (dx * 10).toFixed(1) + 'px,' + (dy * 6).toFixed(1) + 'px)';
-  });
-  hero.addEventListener('pointerleave', function () { img.style.transform = ''; });
+  if (!k) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var frames = {}, cur = 4, lastSwitch = 0, idleTimer = null, glanceTimer = null, hover = false;
+  k.querySelectorAll('.kf').forEach(function (el) { frames[el.getAttribute('data-f')] = el; });
+
+  function show(f, now) {
+    now = now || performance.now();
+    if (f === cur) return;
+    if (now - lastSwitch < 160) return;        /* no flicker between neighbours */
+    frames[cur].classList.remove('is-on');
+    frames[f].classList.add('is-on');
+    cur = f; lastSwitch = now;
+  }
+
+  /* idle: look somewhere, hold, come back, wait */
+  function scheduleGlance(delay) {
+    clearTimeout(glanceTimer);
+    glanceTimer = setTimeout(function () {
+      if (hover) return;
+      var options = [0, 1, 2, 3, 5, 6, 7, 8];
+      var f = options[Math.floor(Math.random() * options.length)];
+      show(f);
+      var hold = 700 + Math.random() * 900;
+      if (Math.random() < 0.3) {              /* sometimes a two-step look */
+        setTimeout(function () { if (!hover) show([3, 5][Math.floor(Math.random() * 2)]); }, hold);
+        hold += 600;
+      }
+      setTimeout(function () { if (!hover) show(4); }, hold);
+      scheduleGlance(2200 + Math.random() * 3200);
+    }, delay);
+  }
+
+  /* pointer: pick the pose that faces the cursor */
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (fine) {
+    var hero = k.closest('.hero');
+    hero.addEventListener('pointermove', function (e) {
+      var r = k.getBoundingClientRect();
+      var ox = r.left + r.width * 0.5, oy = r.top + r.height * 0.42;   /* roughly the head */
+      var dx = (e.clientX - ox) / r.width, dy = (e.clientY - oy) / r.height;
+      var t = 0.28;
+      var c = dx < -t ? 0 : dx > t ? 2 : 1;
+      var rr = dy < -t ? 0 : dy > t ? 2 : 1;
+      hover = true;
+      show(rr * 3 + c);
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { hover = false; show(4); scheduleGlance(1500); }, 2500);
+    });
+    hero.addEventListener('pointerleave', function () {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function () { hover = false; show(4); scheduleGlance(1200); }, 600);
+    });
+  }
+  scheduleGlance(1800);
 })();
 
 document.getElementById('year').textContent = new Date().getFullYear();
