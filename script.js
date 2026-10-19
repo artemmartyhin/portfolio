@@ -115,87 +115,73 @@
   setInterval(tick, 12000);
 })();
 
-/* Kiwi looks around. Gaze is a point (u, v) in [-1, 1]^2 that eases toward a
-   target every frame; the nine poses of the sprite sheet are blended with
-   bilinear weights at that point, so there is never a hard switch. The stack
-   also shifts and tilts a little toward the gaze. Target follows the pointer
-   on desktop; when idle it wanders to a random direction and drifts back. */
+/* Kiwi looks around. 35 poses on a 7x5 grid (column = left..right, row =
+   up..down, centre = 3,2). The shown frame walks one cell at a time toward a
+   target cell at a steady flip rate, so every turn passes through the poses
+   in between: a flipbook, no blending. The target follows the pointer on
+   desktop (with hysteresis so it never chatters on a cell edge); when idle
+   it glances somewhere at random and comes back. */
 (function () {
-  var k = document.getElementById('kiwi');
-  if (!k || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var stack = k.querySelector('.kstack');
-  var layers = [];
-  k.querySelectorAll('.kf').forEach(function (el) { layers[+el.getAttribute('data-f')] = el; });
+  var k = document.getElementById('kiwi'), kf = document.getElementById('kf');
+  if (!k || !kf || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var COLS = 7, ROWS = 5, cc = 3, cr = 2, tc = 3, tr = 2;
+  var STEP = 70, last = 0, raf = 0, hover = false, idleTimer = null, glance = null;
 
-  var u = 0, v = 0, tu = 0, tv = 0, ease = 0.06, hover = false, idleTimer = null, raf = 0;
-  var w = [0, 0, 0, 0, 0, 0, 0, 0, 0], lastOp = [0, 0, 0, 0, 1, 0, 0, 0, 0];
-
-  function smooth(t) { return t * t * (3 - 2 * t); }
-
-  function paint() {
-    var cx = u + 1, ry = v + 1;                       /* 0..2 across the grid */
-    var i0 = Math.min(1, Math.floor(cx)), j0 = Math.min(1, Math.floor(ry));
-    var fx = smooth(cx - i0), fy = smooth(ry - j0);
-    for (var n = 0; n < 9; n++) w[n] = 0;
-    w[j0 * 3 + i0] = (1 - fx) * (1 - fy);
-    w[j0 * 3 + i0 + 1] = fx * (1 - fy);
-    w[(j0 + 1) * 3 + i0] = (1 - fx) * fy;
-    w[(j0 + 1) * 3 + i0 + 1] = fx * fy;
-    /* "over" compositing: layer opacity = its weight over the sum so far */
-    var sum = 0;
-    for (var m = 0; m < 9; m++) {
-      sum += w[m];
-      var a = sum > 0.0005 ? w[m] / sum : 0;
-      if (Math.abs(a - lastOp[m]) > 0.002) { layers[m].style.opacity = a.toFixed(3); lastOp[m] = a; }
+  function render() { kf.style.backgroundPosition = (cc / (COLS - 1) * 100) + '% ' + (cr / (ROWS - 1) * 100) + '%'; }
+  function loop(now) {
+    if (cc === tc && cr === tr) { raf = 0; return; }
+    if (now - last >= STEP) {
+      if (cc !== tc) cc += tc > cc ? 1 : -1;
+      if (cr !== tr) cr += tr > cr ? 1 : -1;
+      last = now; render();
     }
-    stack.style.transform = 'translate(' + (u * 9).toFixed(1) + 'px,' + (v * 5).toFixed(1) + 'px) rotate(' + (u * 2.2).toFixed(2) + 'deg)';
+    raf = requestAnimationFrame(loop);
+  }
+  function target(c, r) {
+    tc = Math.max(0, Math.min(COLS - 1, c)); tr = Math.max(0, Math.min(ROWS - 1, r));
+    if (!raf) raf = requestAnimationFrame(loop);
   }
 
-  function tick() {
-    u += (tu - u) * ease; v += (tv - v) * ease;
-    paint();
-    if (Math.abs(tu - u) > 0.002 || Math.abs(tv - v) > 0.002) raf = requestAnimationFrame(tick);
-    else { u = tu; v = tv; paint(); raf = 0; }
-  }
-  function go(x, y, e) {
-    tu = Math.max(-1, Math.min(1, x)); tv = Math.max(-1, Math.min(1, y)); ease = e;
-    if (!raf) raf = requestAnimationFrame(tick);
-  }
-
-  /* idle wander: look somewhere, hold, drift back, wait */
-  var glance = null;
+  /* idle: look somewhere, hold, come back, wait */
   function wander(delay) {
     clearTimeout(glance);
     glance = setTimeout(function () {
       if (hover) return;
-      var ang = Math.random() * Math.PI * 2, r = 0.7 + Math.random() * 0.3;
-      go(Math.cos(ang) * r, Math.sin(ang) * r * 0.9, 0.045);
-      var hold = 900 + Math.random() * 1100;
+      var c = Math.floor(Math.random() * COLS), r = Math.floor(Math.random() * ROWS);
+      if (Math.abs(c - 3) < 2 && Math.abs(r - 2) < 2) c = Math.random() < 0.5 ? 0 : 6;
+      target(c, r);
+      var hold = 900 + Math.random() * 1200;
       if (Math.random() < 0.35) {
-        setTimeout(function () { if (!hover) go(-Math.cos(ang) * 0.8, Math.sin(ang) * 0.3, 0.04); }, hold);
-        hold += 1100;
+        setTimeout(function () { if (!hover) target(6 - c, Math.round(2 + (r - 2) * 0.4)); }, hold);
+        hold += 1300;
       }
-      setTimeout(function () { if (!hover) go(0, 0, 0.035); }, hold);
-      wander(2600 + Math.random() * 3400);
+      setTimeout(function () { if (!hover) target(3, 2); }, hold);
+      wander(2800 + Math.random() * 3400);
     }, delay);
   }
 
+  /* pointer: cell that faces the cursor, with hysteresis */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    var hero = k.closest('.hero');
+    var hero = k.closest('.hero'), pc = 3, pr = 2;
     hero.addEventListener('pointermove', function (e) {
-      var r = k.getBoundingClientRect();
-      var ox = r.left + r.width * 0.5, oy = r.top + r.height * 0.42;     /* about the head */
-      hover = true;
-      go((e.clientX - ox) / (r.width * 0.7), (e.clientY - oy) / (r.height * 0.7), 0.11);
+      var b = k.getBoundingClientRect();
+      var ox = b.left + b.width * 0.5, oy = b.top + b.height * 0.38;       /* about the head */
+      var x = (e.clientX - ox) / (b.width * 0.75), y = (e.clientY - oy) / (b.height * 0.75);
+      var fc = (Math.max(-1, Math.min(1, x)) + 1) / 2 * (COLS - 1);
+      var fr = (Math.max(-1, Math.min(1, y)) + 1) / 2 * (ROWS - 1);
+      if (Math.abs(fc - pc) > 0.65) pc = Math.round(fc);
+      if (Math.abs(fr - pr) > 0.65) pr = Math.round(fr);
+      hover = true; target(pc, pr);
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(function () { hover = false; go(0, 0, 0.04); wander(1800); }, 3000);
+      idleTimer = setTimeout(function () { hover = false; target(3, 2); wander(2000); }, 3000);
     });
     hero.addEventListener('pointerleave', function () {
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(function () { hover = false; go(0, 0, 0.04); wander(1500); }, 400);
+      idleTimer = setTimeout(function () { hover = false; target(3, 2); wander(1500); }, 400);
     });
   }
   document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(glance); else if (!hover) wander(800); });
+  render();
   wander(1600);
 })();
 
