@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Artem Martiukhin</title>
   <meta name="description" content="Artem Martiukhin, blockchain engineer. Smart contracts, DeFi infrastructure and low-latency on-chain systems in Solidity, Rust and TypeScript since 2021.">
-  <meta name="theme-color" content="#eef0f2" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1317" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0a0d12">
   <meta property="og:title" content="Artem Martiukhin">
   <meta property="og:description" content="Blockchain engineer. Smart contracts, DeFi infrastructure and low-latency on-chain systems.">
   <meta property="og:type" content="website">
@@ -17,177 +16,230 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-<div class="page">
+<header class="top">
+  <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">AM</span><span>Artem Martiukhin</span></a>
+  <nav class="top-nav" aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+    <a class="top-cv" href="/assets/cv.pdf">CV</a>
+  </nav>
+</header>
 
-  <header class="side">
-    <a class="photo" href="#top" aria-label="Top of page">
-      <img src="/assets/photo.png" alt="Artem Martiukhin" width="720" height="720">
-    </a>
-    <h1 class="name">Artem<br>Martiukhin</h1>
-    <p class="role">Blockchain engineer</p>
-    <p class="lede">Smart contracts, DeFi infrastructure and low‑latency on‑chain systems. Solidity, Rust and TypeScript since 2021.</p>
+<main id="top">
 
-    <nav class="nav" aria-label="Sections">
-      <a href="#now">Now</a>
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <canvas class="hero-field" id="field" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="kicker mono"><span class="dot" aria-hidden="true"></span><span id="head">Ethereum mainnet</span></p>
+        <h1 class="display">Artem<br>Martiukhin</h1>
+        <p class="role">Blockchain engineer</p>
+        <p class="lede">I build smart contracts, DeFi infrastructure and low‑latency on‑chain systems. Solidity, Rust and TypeScript, shipping on mainnets since 2021.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#work">Selected work</a>
+          <a class="btn" href="mailto:artemmartyhin@gmail.com">Email me</a>
+        </div>
+        <ul class="social mono">
+          <li><a href="https://github.com/artemmartyhin" rel="me">github</a></li>
+          <li><a href="https://www.linkedin.com/in/temmartik/" rel="me">linkedin</a></li>
+          <li><a href="https://x.com/martiukhin" rel="me">x</a></li>
+        </ul>
+      </div>
+      <figure class="portrait">
+        <img src="/assets/photo.png" alt="Artem Martiukhin" width="720" height="720">
+        <figcaption class="mono">
+          <span>since 2021</span>
+          <span>Solidity · Rust · TS</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <ul class="links">
-      <li><a href="https://github.com/artemmartyhin" rel="me">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/temmartik/" rel="me">LinkedIn</a></li>
-      <li><a href="https://x.com/martiukhin" rel="me">X</a></li>
-      <li><a href="mailto:artemmartyhin@gmail.com">Email</a></li>
-      <li><a href="/assets/cv.pdf">CV <span class="mono">pdf</span></a></li>
+  <!-- ===== STACK MARQUEE ===== -->
+  <div class="marquee" aria-label="Chains and tools I work with">
+    <div class="marquee-track">
+      <span>Ethereum</span><span>Arbitrum</span><span>Base</span><span>Optimism</span><span>zkSync</span><span>Blast</span><span>BNB Chain</span><span>Polygon</span><span>Bitcoin</span><span>Ordinals</span><span>TON</span><span>Celo</span><span>Solana</span><span>Rootstock</span><span>Solidity</span><span>Rust</span><span>TypeScript</span><span>FunC</span><span>Foundry</span><span>Hardhat</span><span>The Graph</span><span>Chainlink CCIP</span><span>LayerZero</span><span>NestJS</span><span>Postgres</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span>Ethereum</span><span>Arbitrum</span><span>Base</span><span>Optimism</span><span>zkSync</span><span>Blast</span><span>BNB Chain</span><span>Polygon</span><span>Bitcoin</span><span>Ordinals</span><span>TON</span><span>Celo</span><span>Solana</span><span>Rootstock</span><span>Solidity</span><span>Rust</span><span>TypeScript</span><span>FunC</span><span>Foundry</span><span>Hardhat</span><span>The Graph</span><span>Chainlink CCIP</span><span>LayerZero</span><span>NestJS</span><span>Postgres</span>
+    </div>
+  </div>
+
+  <!-- ===== NOW ===== -->
+  <section class="section now">
+    <div class="section-head">
+      <h2 class="h2">What I'm doing now</h2>
+    </div>
+    <div class="now-grid">
+      <div class="now-card">
+        <p class="now-label mono">Day job</p>
+        <h3>DeFi and cross‑chain for clients</h3>
+        <p>Blockchain developer at <a href="https://ideasoft.io/">IdeaSoft</a>: protocol contracts, bridges and exchange back ends, from design to mainnet.</p>
+      </div>
+      <div class="now-card">
+        <p class="now-label mono">Open source</p>
+        <h3>Ethereum tooling in Rust</h3>
+        <p><a href="https://github.com/artemmartyhin/balq">balq</a>, a verified storage‑history tool built on EIP‑7928 block access lists. Published to crates.io and npm.</p>
+      </div>
+      <div class="now-card">
+        <p class="now-label mono">Own systems</p>
+        <h3>Low‑latency execution</h3>
+        <p>Same‑block arbitrage and liquidation engines I fund and operate myself. Rust hot path, custom peering, sub‑10 ms build‑and‑send.</p>
+      </div>
+      <div class="now-card">
+        <p class="now-label mono">Research</p>
+        <h3>Post‑quantum Ethereum</h3>
+        <p>Going deep on hash‑based and lattice signatures and how they land in EVM verifiers and account abstraction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section class="section" id="work">
+    <div class="section-head">
+      <h2 class="h2">Selected work</h2>
+      <p class="section-sub">Seven things I'm proud of, from a Rust archive tool to protocols holding real money.</p>
+    </div>
+
+    <div class="work-grid">
+
+      <article class="card card-feature">
+        <div class="card-top">
+          <p class="card-meta mono">2026 · Rust · open source</p>
+          <h3 class="card-title"><a href="https://github.com/artemmartyhin/balq">balq</a></h3>
+          <p class="card-text">Local, verified history of any contract's storage on a plain full node. No archive node, no indexer schema. It indexes a contract back to its deploy, follows the head and verifies every block it stores, using EIP‑7928 block‑level access lists.</p>
+          <p class="card-tags mono"><a href="https://crates.io/crates/balq">crates.io</a><a href="https://www.npmjs.com/package/@balq/node">npm @balq/node</a><span>Sourcify layouts</span><span>Sepolia</span><span>MIT / Apache‑2.0</span></p>
+        </div>
+        <pre class="terminal mono" aria-label="Example session"><span class="t-prompt">$</span> balq index 0x3582… --rpc http://localhost:8545 --layout Playground.json
+<span class="t-ok">✓</span> 0x3582…53ce  created at 114562 — history complete (2456 blocks, 131 records)
+<span class="t-dim">117022</span>  <span class="t-acc">▲ 6 record(s)</span>  counter 19 → 20, items[4] 0 → …, [0xc0e2…8cd7] 60428 → 66428
+
+<span class="t-prompt">$</span> balq get 0x3582… --field "balances[0x61Cc…]" --block 114591
+→ balances[0x61Cc…] = <span class="t-acc">37585</span>   (slot 0xc0e2…, set @ 114590, bal)</pre>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2025–26 · Rust · own capital</p>
+        <h3 class="card-title">Low‑latency on‑chain execution</h3>
+        <p class="card-text">Same‑block arbitrage and liquidation engines designed, funded and operated by me. Rust hot path, custom node peering, pending‑flow ingestion, tracing and accounting. Ran on Arc, Base and BNB Chain, including a Venus liquidation bot.</p>
+        <p class="card-tags mono"><span>Rust</span><span>MEV</span><span>p2p</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2023–24 · IdeaSoft</p>
+        <h3 class="card-title">SatoshiSync</h3>
+        <p class="card-text">Cross‑chain bridge for Bitcoin Ordinals, BRC‑20 and Runes. APIs, subgraphs and workers tracking balances across eight chains, with Chainlink CCIP and LayerZero for messaging.</p>
+        <p class="card-tags mono"><span>Bitcoin</span><span>8 chains</span><span>CCIP · LayerZero</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2023–24 · IdeaSoft</p>
+        <h3 class="card-title">DeHive</h3>
+        <p class="card-text">Contracts and subgraph for an automated market‑making protocol on Arbitrum, Optimism, Ethereum, Blast and zkSync, composing Balancer, Curve, Uniswap V3 and Chainlink oracles. Over $1M under management.</p>
+        <p class="card-tags mono"><span>Solidity</span><span>5 chains</span><span>$1M+ TVL</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2022–23 · Ambisafe</p>
+        <h3 class="card-title"><a href="https://moola.market/">Moola Market</a></h3>
+        <p class="card-text">Aave‑based lending protocol on Celo and Ethereum. Led the contracts and off‑chain services, built on‑chain stock‑price oracles and a decentralized KYC service, audited the client's code.</p>
+        <p class="card-tags mono"><span>Celo</span><span>lending</span><span>oracles</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2024 · FunC · open source</p>
+        <h3 class="card-title"><a href="https://github.com/artemmartyhin/jetton-distributor">Jetton distributor</a></h3>
+        <p class="card-text">Token distribution contracts on TON with a TypeScript test harness.</p>
+        <p class="card-tags mono"><span>TON</span><span>FunC</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2021–22 · Blaize</p>
+        <h3 class="card-title">IDO and AMM protocols</h3>
+        <p class="card-text">Enterprise IDO contracts and the core logic of three AMMs on Ethereum, BNB Chain and Polygon, integrating Uniswap V2, PancakeSwap, Aave, Balancer and Curve. Shipped for <a href="https://www.orderbook.io/">Orderbook</a>, <a href="https://www.tabla.is/">Tabla</a> and <a href="https://leaguedao.com/nomo-football">LeagueDAO</a>.</p>
+        <p class="card-tags mono"><span>Solidity</span><span>10+ audits</span></p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section" id="experience">
+    <div class="section-head">
+      <h2 class="h2">Experience</h2>
+    </div>
+    <ol class="xp">
+      <li class="xp-row">
+        <p class="xp-when mono">2023 — now</p>
+        <div class="xp-body">
+          <h3>Blockchain Developer <span class="xp-at">at <a href="https://ideasoft.io/">IdeaSoft</a></span></h3>
+          <ul>
+            <li>Led several enterprise cross‑chain applications in Solidity, TypeScript, NestJS and The Graph.</li>
+            <li>Bridge back end for Ordinals, BRC‑20 and Runes across eight chains.</li>
+            <li>AMM contracts and subgraph across five EVM chains, ERC‑20 vesting for a token‑sale protocol, TON contracts in FunC.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="xp-row">
+        <p class="xp-when mono">2022 — 2023</p>
+        <div class="xp-body">
+          <h3>Blockchain Developer <span class="xp-at">at Ambisafe</span></h3>
+          <ul>
+            <li>Smart contracts and services for an Aave‑based lending protocol on Celo and Ethereum.</li>
+            <li>Decentralized KYC service and on‑chain stock‑price oracles.</li>
+            <li>Two full security audits with written reports.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="xp-row">
+        <p class="xp-when mono">2021 — 2022</p>
+        <div class="xp-body">
+          <h3>Blockchain Developer <span class="xp-at">at Blaize</span></h3>
+          <ul>
+            <li>IDO contracts and three AMM protocols on Ethereum, BNB Chain and Polygon.</li>
+            <li>Integrations with Uniswap V2, PancakeSwap, Aave, Balancer, Curve and oracle providers.</li>
+            <li>Eight+ security audits of client contracts.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="xp-row">
+        <p class="xp-when mono">2019 — 2023</p>
+        <div class="xp-body">
+          <h3>BSc, Information Technology</h3>
+          <p class="xp-note">Ukrainian State University of Chemical Technology, Dnipro.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section contact" id="contact">
+    <p class="kicker mono">Contact</p>
+    <h2 class="display contact-title">Let's build<br>something that holds.</h2>
+    <p class="lede">Open to protocol engineering, smart‑contract and infrastructure work, remote or contract.</p>
+    <a class="contact-mail display" href="mailto:artemmartyhin@gmail.com">artemmartyhin@gmail.com</a>
+    <ul class="social mono">
+      <li><a href="https://github.com/artemmartyhin" rel="me">github</a></li>
+      <li><a href="https://www.linkedin.com/in/temmartik/" rel="me">linkedin</a></li>
+      <li><a href="https://x.com/martiukhin" rel="me">x</a></li>
+      <li><a href="/assets/cv.pdf">cv.pdf</a></li>
     </ul>
-  </header>
+  </section>
 
-  <main class="content" id="top">
+</main>
 
-    <section class="block" id="now">
-      <h2 class="eyebrow">Now</h2>
-      <div class="prose">
-        <p>Blockchain developer at <a href="https://ideasoft.io/">IdeaSoft</a>, where I build DeFi protocols, cross‑chain bridges and exchange back ends for clients. On the side I ship Ethereum tooling in Rust, run my own on‑chain execution systems, and am going deep on post‑quantum signatures for Ethereum.</p>
-      </div>
-      <dl class="facts">
-        <div><dt>Languages</dt><dd>Solidity · Rust · TypeScript · FunC · Go</dd></div>
-        <div><dt>Chains</dt><dd>Ethereum &amp; L2s · Bitcoin · TON · Celo · BSC</dd></div>
-        <div><dt>Tooling</dt><dd>Foundry · Hardhat · The Graph · NestJS · Postgres</dd></div>
-      </dl>
-    </section>
+<footer class="foot mono">
+  <span>© <span id="year">2026</span> Artem Martiukhin</span>
+  <a href="https://github.com/artemmartyhin/portfolio">source</a>
+</footer>
 
-    <section class="block" id="work">
-      <h2 class="eyebrow">Selected work</h2>
-
-      <article class="project">
-        <header>
-          <h3><a href="https://github.com/artemmartyhin/balq">balq</a></h3>
-          <p class="meta mono">2026 · Rust · open source</p>
-        </header>
-        <p>Local, verified history of any contract's storage on a plain full node. No archive node, no indexer schema. Built on EIP‑7928 block‑level access lists: it indexes a contract back to its deploy, follows the head, and verifies every block it stores.</p>
-        <pre class="sample mono" aria-label="Example output">balq get 0x3582… --field "balances[0x61Cc…]" --block 114591
-→ balances[0x61Cc…] = 37585   (slot 0xc0e2…, set @ 114590, bal)</pre>
-        <p class="tags mono"><a href="https://crates.io/crates/balq">crates.io</a> <a href="https://www.npmjs.com/package/@balq/node">npm @balq/node</a> <span>Sourcify layouts</span> <span>Sepolia</span></p>
-      </article>
-
-      <article class="project">
-        <header>
-          <h3>Low‑latency on‑chain execution</h3>
-          <p class="meta mono">2025–26 · Rust · own capital</p>
-        </header>
-        <p>Same‑block arbitrage and liquidation engines I design, fund and operate myself. A Rust hot path with a sub‑10 ms build‑and‑send loop, custom node peering and pending‑flow ingestion, plus the tracing and accounting around it. Ran on Arc, Base and BNB Chain, including a Venus liquidation bot.</p>
-      </article>
-
-      <article class="project">
-        <header>
-          <h3>SatoshiSync</h3>
-          <p class="meta mono">2023–24 · IdeaSoft</p>
-        </header>
-        <p>Cross‑chain bridge for Bitcoin Ordinals, BRC‑20 and Runes. I designed the APIs, subgraphs and background workers tracking balances across Bitcoin, Ethereum, Solana, Arbitrum, BNB Chain, Base, Rootstock and CoreDAO, with Chainlink CCIP and LayerZero for messaging.</p>
-      </article>
-
-      <article class="project">
-        <header>
-          <h3>DeHive</h3>
-          <p class="meta mono">2023–24 · IdeaSoft</p>
-        </header>
-        <p>Smart contracts and subgraph for an automated market‑making protocol on Arbitrum, Optimism, Ethereum, Blast and zkSync, composing Balancer, Curve, Uniswap V3 and Chainlink oracles. Over $1M under management.</p>
-      </article>
-
-      <article class="project">
-        <header>
-          <h3><a href="https://moola.market/">Moola Market</a></h3>
-          <p class="meta mono">2022–23 · Ambisafe</p>
-        </header>
-        <p>Aave‑based lending protocol on Celo and Ethereum. Led the smart contracts and off‑chain services, built on‑chain stock‑price oracles and a decentralized KYC service, and audited the client's contracts.</p>
-      </article>
-
-      <article class="project">
-        <header>
-          <h3><a href="https://github.com/artemmartyhin/jetton-distributor">Jetton distributor</a></h3>
-          <p class="meta mono">2024 · FunC · open source</p>
-        </header>
-        <p>Token distribution contracts on TON, with a TypeScript test harness.</p>
-      </article>
-
-      <article class="project">
-        <header>
-          <h3>IDO and AMM protocols</h3>
-          <p class="meta mono">2021–22 · Blaize</p>
-        </header>
-        <p>Enterprise IDO contracts and the core logic of three automated market makers on Ethereum, BNB Chain and Polygon, integrating Uniswap V2, PancakeSwap, Aave, Balancer and Curve. Shipped for <a href="https://www.orderbook.io/">Orderbook</a>, <a href="https://www.tabla.is/">Tabla</a> and <a href="https://leaguedao.com/nomo-football">LeagueDAO</a>, among others.</p>
-      </article>
-    </section>
-
-    <section class="block" id="experience">
-      <h2 class="eyebrow">Experience</h2>
-      <ol class="timeline">
-        <li>
-          <p class="when mono">2023 — now</p>
-          <div>
-            <h3>Blockchain Developer · <a href="https://ideasoft.io/">IdeaSoft</a></h3>
-            <ul>
-              <li>Led several enterprise cross‑chain applications in Solidity, TypeScript, NestJS and The Graph.</li>
-              <li>Bridge back end for Ordinals, BRC‑20 and Runes across eight chains, with CCIP and LayerZero.</li>
-              <li>AMM protocol contracts and subgraph across five EVM chains; ERC‑20 vesting for a token‑sale protocol.</li>
-              <li>TON token‑distribution contracts in FunC.</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <p class="when mono">2022 — 2023</p>
-          <div>
-            <h3>Blockchain Developer · Ambisafe</h3>
-            <ul>
-              <li>Smart contracts and services for an Aave‑based lending protocol on Celo and Ethereum.</li>
-              <li>Decentralized KYC service and on‑chain stock‑price oracles.</li>
-              <li>Two full smart‑contract security audits with written reports.</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <p class="when mono">2021 — 2022</p>
-          <div>
-            <h3>Blockchain Developer · Blaize</h3>
-            <ul>
-              <li>IDO contracts and three AMM protocols on Ethereum, BNB Chain and Polygon.</li>
-              <li>Integrations with Uniswap V2, PancakeSwap, Aave, Balancer, Curve and oracle providers.</li>
-              <li>Eight+ security audits of client contracts.</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <p class="when mono">2019 — 2023</p>
-          <div>
-            <h3>BSc, Information Technology</h3>
-            <p class="muted">Ukrainian State University of Chemical Technology, Dnipro.</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <section class="block" id="contact">
-      <h2 class="eyebrow">Contact</h2>
-      <div class="prose">
-        <p>Open to protocol engineering, smart‑contract and infrastructure work, remote or contract. The fastest way to reach me is email.</p>
-        <p class="big"><a href="mailto:artemmartyhin@gmail.com">artemmartyhin@gmail.com</a></p>
-      </div>
-    </section>
-
-    <footer class="foot mono">
-      <span>© <span id="year">2026</span> Artem Martiukhin</span>
-      <a href="https://github.com/artemmartyhin/portfolio">Source</a>
-    </footer>
-
-  </main>
-</div>
-
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/script.js" defer></script>
 </body>
 </html>
