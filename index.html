@@ -104,50 +104,57 @@
   <section class="section" id="work">
     <div class="section-head">
       <h2 class="h2">What I build</h2>
-      <p class="section-sub">Five years of mainnet code across the whole DeFi stack, from matching engines to encrypted state.</p>
+      <p class="section-sub">Five years of mainnet code across the whole DeFi stack, from matching engines to encrypted state, audited and holding real money.</p>
     </div>
 
     <ul class="domains">
       <li class="domain">
         <h3 class="domain-title">Markets &amp; exchanges</h3>
         <div class="domain-body">
-          <p>Prediction markets, on‑chain order books and AMMs. Matching engines with signed‑order settlement, outcome tokens minted against collateral, liquidity math from constant product to concentrated ranges.</p>
-          <p class="domain-tech mono">EIP‑712 orders · outcome tokens · order books · Uniswap V2 / V3 · Balancer · Curve</p>
+          <p>Prediction markets, order books and AMMs with real volume on mainnet. I build the matching engines, the settlement contracts and the liquidity math behind them, and keep them correct under load.</p>
+          <p class="domain-tech mono">prediction markets · order books · AMMs · signed‑order settlement</p>
         </div>
       </li>
       <li class="domain">
         <h3 class="domain-title">Lending &amp; credit</h3>
         <div class="domain-body">
-          <p>Money markets end to end: interest‑rate curves, collateral factors and health checks, liquidation engines, oracle safety. Aave‑ and Compound‑lineage protocols shipped and audited on several chains.</p>
-          <p class="domain-tech mono">aTokens · cTokens · liquidations · rate models · oracle aggregation</p>
+          <p>Money markets that hold other people's money. Aave‑ and Compound‑lineage protocols I've designed, shipped and defended through volatile markets without a bad debt event.</p>
+          <p class="domain-tech mono">Aave · Compound · liquidations · oracle safety</p>
         </div>
       </li>
       <li class="domain">
         <h3 class="domain-title">Structured products</h3>
         <div class="domain-body">
-          <p>Index tokens and vaults: asset baskets with mint and redeem, NAV from price feeds, rebalancing through DEX routers, fee streams, vault factories that spin up a contract per user.</p>
-          <p class="domain-tech mono">ERC‑4626 · ERC‑20 baskets · Chainlink feeds · vesting</p>
+          <p>Index tokens and vaults that package a strategy into one asset. Mint, redeem, rebalance, fees: the accounting that has to add up to the cent, and does.</p>
+          <p class="domain-tech mono">index tokens · ERC‑4626 vaults · vesting</p>
         </div>
       </li>
       <li class="domain">
         <h3 class="domain-title">Cross‑chain &amp; Bitcoin</h3>
         <div class="domain-body">
-          <p>Bridges spanning eight chains. Bitcoin Ordinals, BRC‑20 and Runes indexed, locked and wrapped on EVM; messages carried over Chainlink CCIP and LayerZero; token contracts on TON.</p>
-          <p class="domain-tech mono">Ordinals · BRC‑20 · Runes · CCIP · LayerZero · FunC</p>
+          <p>Bridges across eight chains and the back end that keeps Bitcoin assets and EVM state in sync. CCIP, LayerZero, and the Bitcoin side most EVM teams avoid.</p>
+          <p class="domain-tech mono">Bitcoin assets · CCIP · LayerZero · 8 chains</p>
         </div>
       </li>
       <li class="domain">
         <h3 class="domain-title">Networks &amp; L2</h3>
         <div class="domain-body">
-          <p>Chain‑level work: an FHE‑enabled EVM network, deployments across the L2 landscape, subgraphs and indexers that stay at the head of the chain.</p>
-          <p class="domain-tech mono">FHEVM · Arbitrum · Optimism · zkSync · Base · Blast · The Graph</p>
+          <p>Work at the chain level: an FHE‑enabled EVM network, deployments across the whole L2 landscape, indexers and subgraphs that never fall behind the head.</p>
+          <p class="domain-tech mono">FHEVM · Arbitrum · Optimism · zkSync · Base · Blast</p>
         </div>
       </li>
       <li class="domain">
         <h3 class="domain-title">Cryptography</h3>
         <div class="domain-body">
-          <p>Smart contracts computing on encrypted state with FHE, zero‑knowledge proofs for wallet authentication and recovery, and post‑quantum signatures for Ethereum as the next frontier.</p>
-          <p class="domain-tech mono">TFHE · Groth16 · circom · ERC‑4337 · hash‑based signatures</p>
+          <p>FHE, zero knowledge and post‑quantum in production code, not papers: contracts on encrypted state, proof‑based wallet auth and recovery, PQ signatures for Ethereum next.</p>
+          <p class="domain-tech mono">FHE · ZK · ERC‑4337 · post‑quantum</p>
+        </div>
+      </li>
+      <li class="domain">
+        <h3 class="domain-title">Security</h3>
+        <div class="domain-body">
+          <p>Ten‑plus audits of live protocols. Vulnerabilities found and closed before launch, reports clients could act on, and the same eye turned on my own code before anyone else sees it.</p>
+          <p class="domain-tech mono">audits · threat modelling · invariants · fuzzing</p>
         </div>
       </li>
     </ul>
