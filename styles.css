@@ -267,8 +267,32 @@ body::before {
 .now-card a { color: var(--fg); border-bottom: 1px solid var(--line-2); }
 .now-card a:hover { color: var(--accent-ink); border-color: var(--accent); }
 
+/* domains: big editorial rows */
+.domains { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.domain {
+  display: grid; grid-template-columns: 1fr; gap: 0.6rem 3rem;
+  padding-block: clamp(1.4rem, 3vw, 2.2rem); border-bottom: 1px solid var(--line);
+  position: relative; transition: background 200ms;
+}
+@media (min-width: 820px) { .domain { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; } }
+.domain::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: -1px; width: 3px;
+  background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 260ms ease;
+}
+.domain:hover::before { transform: scaleY(1); }
+.domain-title {
+  margin: 0; font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem); text-wrap: balance;
+  transition: color 200ms, transform 260ms ease; padding-left: 0;
+}
+.domain:hover .domain-title { color: var(--accent-ink); transform: translateX(14px); }
+.domain-body { display: flex; flex-direction: column; gap: 0.7rem; min-width: 0; max-width: 60ch; }
+.domain-body p { margin: 0; color: var(--fg-2); font-size: clamp(1rem, 1.4vw, 1.1rem); line-height: 1.55; }
+.domain-tech { font-size: 0.78rem !important; letter-spacing: 0.02em; color: var(--fg-3) !important; }
+
 /* work cards */
 .work-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+.work-grid-single { grid-template-columns: 1fr !important; }
 @media (min-width: 720px) { .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1040px) { .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .card {

@@ -27,6 +27,7 @@
   <a class="brand" href="#top"><img class="brand-mark" src="/assets/favicon-32.png" srcset="/assets/apple-touch-icon.png 2x" alt="" width="30" height="30"><span>Artem Martiukhin</span></a>
   <nav class="top-nav" aria-label="Sections">
     <a href="#work">Work</a>
+    <a href="#oss">Open source</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
     <a class="top-cv" href="/assets/cv.pdf">CV</a>
@@ -102,12 +103,62 @@
   <!-- ===== WORK ===== -->
   <section class="section" id="work">
     <div class="section-head">
-      <h2 class="h2">Selected work</h2>
-      <p class="section-sub">Systems I've built, by architecture rather than by client.</p>
+      <h2 class="h2">What I build</h2>
+      <p class="section-sub">Five years of mainnet code across the whole DeFi stack, from matching engines to encrypted state.</p>
     </div>
 
-    <div class="work-grid">
+    <ul class="domains">
+      <li class="domain">
+        <h3 class="domain-title">Markets &amp; exchanges</h3>
+        <div class="domain-body">
+          <p>Prediction markets, on‑chain order books and AMMs. Matching engines with signed‑order settlement, outcome tokens minted against collateral, liquidity math from constant product to concentrated ranges.</p>
+          <p class="domain-tech mono">EIP‑712 orders · outcome tokens · order books · Uniswap V2 / V3 · Balancer · Curve</p>
+        </div>
+      </li>
+      <li class="domain">
+        <h3 class="domain-title">Lending &amp; credit</h3>
+        <div class="domain-body">
+          <p>Money markets end to end: interest‑rate curves, collateral factors and health checks, liquidation engines, oracle safety. Aave‑ and Compound‑lineage protocols shipped and audited on several chains.</p>
+          <p class="domain-tech mono">aTokens · cTokens · liquidations · rate models · oracle aggregation</p>
+        </div>
+      </li>
+      <li class="domain">
+        <h3 class="domain-title">Structured products</h3>
+        <div class="domain-body">
+          <p>Index tokens and vaults: asset baskets with mint and redeem, NAV from price feeds, rebalancing through DEX routers, fee streams, vault factories that spin up a contract per user.</p>
+          <p class="domain-tech mono">ERC‑4626 · ERC‑20 baskets · Chainlink feeds · vesting</p>
+        </div>
+      </li>
+      <li class="domain">
+        <h3 class="domain-title">Cross‑chain &amp; Bitcoin</h3>
+        <div class="domain-body">
+          <p>Bridges spanning eight chains. Bitcoin Ordinals, BRC‑20 and Runes indexed, locked and wrapped on EVM; messages carried over Chainlink CCIP and LayerZero; token contracts on TON.</p>
+          <p class="domain-tech mono">Ordinals · BRC‑20 · Runes · CCIP · LayerZero · FunC</p>
+        </div>
+      </li>
+      <li class="domain">
+        <h3 class="domain-title">Networks &amp; L2</h3>
+        <div class="domain-body">
+          <p>Chain‑level work: an FHE‑enabled EVM network, deployments across the L2 landscape, subgraphs and indexers that stay at the head of the chain.</p>
+          <p class="domain-tech mono">FHEVM · Arbitrum · Optimism · zkSync · Base · Blast · The Graph</p>
+        </div>
+      </li>
+      <li class="domain">
+        <h3 class="domain-title">Cryptography</h3>
+        <div class="domain-body">
+          <p>Smart contracts computing on encrypted state with FHE, zero‑knowledge proofs for wallet authentication and recovery, and post‑quantum signatures for Ethereum as the next frontier.</p>
+          <p class="domain-tech mono">TFHE · Groth16 · circom · ERC‑4337 · hash‑based signatures</p>
+        </div>
+      </li>
+    </ul>
+  </section>
 
+  <!-- ===== OPEN SOURCE ===== -->
+  <section class="section" id="oss">
+    <div class="section-head">
+      <h2 class="h2">Open source</h2>
+    </div>
+    <div class="work-grid work-grid-single">
       <article class="card card-feature">
         <div class="card-top">
           <p class="card-meta mono">2026 · Rust · open source</p>
@@ -123,62 +174,6 @@
 → balances[0x61Cc…] = <span class="t-acc">37585</span>   (slot 0xc0e2…, set @ 114590, bal)</pre>
       </article>
 
-
-      <article class="card">
-        <p class="card-meta mono">2025–26 · exchange</p>
-        <h3 class="card-title">Prediction markets exchange</h3>
-        <p class="card-text">Off‑chain matching engine with on‑chain settlement of EIP‑712 signed orders. Binary outcome tokens are minted and merged against USDC collateral; fills settle in batches through an exchange contract. Per‑user vault contracts come from a factory on first deposit. Market resolution runs as a Chainlink CRE workflow that writes verdicts to an on‑chain settler. Indexer tracks fills, positions and vault state from chain events.</p>
-        <p class="card-tags mono"><span>TypeScript</span><span>Solidity</span><span>Chainlink CRE</span><span>Postgres</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">money market</p>
-        <h3 class="card-title">Money market</h3>
-        <p class="card-text">Compound v2 architecture: cToken markets with exchange‑rate accrual per block, jump‑rate interest models, a comptroller enforcing collateral factors, borrow caps and close factor, liquidateBorrow with seize incentives, and a price‑oracle adapter. Plus the off‑chain liquidation and accrual workers around it.</p>
-        <p class="card-tags mono"><span>Solidity</span><span>cTokens</span><span>liquidations</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">2023–24 · Bitcoin ⇄ EVM</p>
-        <h3 class="card-title">Ordinals bridge</h3>
-        <p class="card-text">Bridge back end for Ordinals, BRC‑20 and Runes. Bitcoin‑side ingestion of inscriptions, BRC‑20 transfers and rune edicts into a balance ledger; lock on Bitcoin, mint wrapped assets on EVM, burn to release. Cross‑chain messaging through Chainlink CCIP and LayerZero across Ethereum, Solana, Arbitrum, BNB Chain, Base, Rootstock and CoreDAO; subgraphs per chain; NestJS workers for confirmations and retries.</p>
-        <p class="card-tags mono"><span>Bitcoin</span><span>CCIP</span><span>LayerZero</span><span>The Graph</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">confidential compute</p>
-        <h3 class="card-title">FHE network</h3>
-        <p class="card-text">Contracts on an FHEVM: encrypted integer types (euint) and ciphertext handles, arithmetic and comparisons on encrypted state, ACLs that grant decryption rights per address, asynchronous decryption through the gateway with callbacks, and re‑encryption so clients read their own balances. Confidential ERC‑20 and sealed‑bid flows on top.</p>
-        <p class="card-tags mono"><span>FHEVM</span><span>TFHE</span><span>Solidity</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">structured product</p>
-        <h3 class="card-title">Crypto index</h3>
-        <p class="card-text">ERC‑20 index share backed by a vault of constituent tokens. Mint and redeem are proportional to the basket; NAV is computed from Chainlink feeds; rebalancing swaps constituents to target weights through DEX routers with slippage bounds; a streaming management fee dilutes supply per block.</p>
-        <p class="card-tags mono"><span>Solidity</span><span>Chainlink</span><span>ERC‑4626</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">2022–23 · lending</p>
-        <h3 class="card-title">Lending protocol</h3>
-        <p class="card-text">Aave v2 architecture on Celo and Ethereum: LendingPool with aTokens and variable/stable debt tokens, interest‑rate strategies, liquidationCall with health‑factor checks, and an oracle aggregator. Built on‑chain stock‑price oracles pushing equity prices from off‑chain signers, a decentralized KYC service gating markets, and two audits of the client's contracts.</p>
-        <p class="card-tags mono"><span>Solidity</span><span>aTokens</span><span>oracles</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">2021–22 · exchange</p>
-        <h3 class="card-title">Order‑book exchange</h3>
-        <p class="card-text">On‑chain order book: limit orders stored and matched in contract, partial fills, cancellation and settlement from escrowed balances. Alongside it, IDO launchpad contracts with tiered allocations, cliff‑and‑linear vesting and claims, and the core of three AMMs integrating Uniswap V2, PancakeSwap, Aave, Balancer and Curve on Ethereum, BNB Chain and Polygon. Eight‑plus audits.</p>
-        <p class="card-tags mono"><span>Solidity</span><span>AMM</span><span>vesting</span></p>
-      </article>
-
-      <article class="card">
-        <p class="card-meta mono">zero knowledge</p>
-        <h3 class="card-title">ZK wallet</h3>
-        <p class="card-text">ERC‑4337 account whose signature validation is a ZK proof: the client proves knowledge of the credential in a Groth16 circuit, the on‑chain verifier checks it in validateUserOp, nullifiers stop replay, and recovery is another proof instead of a guardian multisig. Bundler and paymaster integration for gasless flows.</p>
-        <p class="card-tags mono"><span>ERC‑4337</span><span>Groth16</span><span>circom</span></p>
-      </article>
 
     </div>
   </section>
