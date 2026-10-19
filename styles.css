@@ -259,18 +259,6 @@ body::before {
 .section-head { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: clamp(2rem, 4vw, 3rem); max-width: 60ch; }
 .section-sub { margin: 0; color: var(--fg-2); font-size: 1.1rem; }
 
-/* now */
-.now-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-@media (min-width: 640px) { .now-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1000px) { .now-grid { grid-template-columns: repeat(4, 1fr); } }
-.now-card { background: var(--bg); padding: 1.6rem 1.5rem 1.7rem; display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; transition: background 160ms; }
-.now-card:hover { background: var(--surface); }
-.now-label { margin: 0; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ink); }
-.now-card h3 { margin: 0; font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; }
-.now-card p:last-child { margin: 0; color: var(--fg-2); font-size: 0.98rem; }
-.now-card a { color: var(--fg); border-bottom: 1px solid var(--line-2); }
-.now-card a:hover { color: var(--accent-ink); border-color: var(--accent); }
-
 /* domains: big editorial rows */
 .domains { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .domain {
