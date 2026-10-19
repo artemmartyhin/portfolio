@@ -87,9 +87,9 @@
         <p><a href="https://github.com/artemmartyhin/balq">balq</a>, a verified storage‑history tool built on EIP‑7928 block access lists. Published to crates.io and npm.</p>
       </div>
       <div class="now-card">
-        <p class="now-label mono">Own systems</p>
-        <h3>Low‑latency execution</h3>
-        <p>Same‑block arbitrage and liquidation engines I fund and operate myself. Rust hot path, custom peering, sub‑10 ms build‑and‑send.</p>
+        <p class="now-label mono">Right now</p>
+        <h3>Prediction markets</h3>
+        <p>Exchange back end and settlement for an on‑chain prediction‑markets platform: matching, vaults, oracle resolution.</p>
       </div>
       <div class="now-card">
         <p class="now-label mono">Research</p>
@@ -103,7 +103,7 @@
   <section class="section" id="work">
     <div class="section-head">
       <h2 class="h2">Selected work</h2>
-      <p class="section-sub">Seven things I'm proud of, from a Rust archive tool to protocols holding real money.</p>
+      <p class="section-sub">Products I've shipped, described by what they do rather than whose they are.</p>
     </div>
 
     <div class="work-grid">
@@ -123,46 +123,61 @@
 → balances[0x61Cc…] = <span class="t-acc">37585</span>   (slot 0xc0e2…, set @ 114590, bal)</pre>
       </article>
 
+
       <article class="card">
-        <p class="card-meta mono">2025–26 · Rust · own capital</p>
-        <h3 class="card-title">Low‑latency on‑chain execution</h3>
-        <p class="card-text">Same‑block arbitrage and liquidation engines designed, funded and operated by me. Rust hot path, custom node peering, pending‑flow ingestion, tracing and accounting. Ran on Arc, Base and BNB Chain, including a Venus liquidation bot.</p>
-        <p class="card-tags mono"><span>Rust</span><span>MEV</span><span>p2p</span></p>
+        <p class="card-meta mono">2025–26 · exchange infrastructure</p>
+        <h3 class="card-title">Prediction markets</h3>
+        <p class="card-text">Back end and contracts for an on‑chain prediction‑markets exchange: order matching and settlement, per‑user vaults created on first deposit, and an oracle pipeline that resolves markets and pays out without a human in the loop.</p>
+        <p class="card-tags mono"><span>TypeScript</span><span>Solidity</span><span>Chainlink</span><span>Postgres</span></p>
       </article>
 
       <article class="card">
-        <p class="card-meta mono">2023–24 · IdeaSoft</p>
-        <h3 class="card-title">SatoshiSync</h3>
-        <p class="card-text">Cross‑chain bridge for Bitcoin Ordinals, BRC‑20 and Runes. APIs, subgraphs and workers tracking balances across eight chains, with Chainlink CCIP and LayerZero for messaging.</p>
+        <p class="card-meta mono">money market</p>
+        <h3 class="card-title">Compound‑style lending</h3>
+        <p class="card-text">Lending and borrowing markets built on the Compound model: interest‑rate curves, collateral factors, liquidation flow and the risk parameters that keep the pools solvent through volatile days.</p>
+        <p class="card-tags mono"><span>Solidity</span><span>DeFi</span><span>liquidations</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2023–24 · Bitcoin ⇄ EVM</p>
+        <h3 class="card-title">Ordinals bridge</h3>
+        <p class="card-text">Cross‑chain bridge for Bitcoin Ordinals, BRC‑20 and Runes. APIs, subgraphs and workers tracking balances across eight chains, with Chainlink CCIP and LayerZero carrying the messages.</p>
         <p class="card-tags mono"><span>Bitcoin</span><span>8 chains</span><span>CCIP · LayerZero</span></p>
       </article>
 
       <article class="card">
-        <p class="card-meta mono">2023–24 · IdeaSoft</p>
-        <h3 class="card-title">DeHive</h3>
-        <p class="card-text">Contracts and subgraph for an automated market‑making protocol on Arbitrum, Optimism, Ethereum, Blast and zkSync, composing Balancer, Curve, Uniswap V3 and Chainlink oracles. Over $1M under management.</p>
-        <p class="card-tags mono"><span>Solidity</span><span>5 chains</span><span>$1M+ TVL</span></p>
+        <p class="card-meta mono">confidential compute</p>
+        <h3 class="card-title">FHE network</h3>
+        <p class="card-text">Network built on an FHEVM, where smart contracts compute on encrypted inputs and state stays private end to end. Contracts and integration work on the encrypted‑types side of the stack.</p>
+        <p class="card-tags mono"><span>FHEVM</span><span>Solidity</span><span>privacy</span></p>
       </article>
 
       <article class="card">
-        <p class="card-meta mono">2022–23 · Ambisafe</p>
-        <h3 class="card-title"><a href="https://moola.market/">Moola Market</a></h3>
+        <p class="card-meta mono">structured product</p>
+        <h3 class="card-title">Crypto index</h3>
+        <p class="card-text">An on‑chain index: one token that tracks a basket of assets, with mint and redeem against the underlying, scheduled rebalancing and price feeds that keep the NAV honest.</p>
+        <p class="card-tags mono"><span>Solidity</span><span>oracles</span><span>DeFi</span></p>
+      </article>
+
+      <article class="card">
+        <p class="card-meta mono">2022–23 · Celo</p>
+        <h3 class="card-title">Lending on Celo</h3>
         <p class="card-text">Aave‑based lending protocol on Celo and Ethereum. Led the contracts and off‑chain services, built on‑chain stock‑price oracles and a decentralized KYC service, audited the client's code.</p>
         <p class="card-tags mono"><span>Celo</span><span>lending</span><span>oracles</span></p>
       </article>
 
       <article class="card">
-        <p class="card-meta mono">2024 · FunC · open source</p>
-        <h3 class="card-title"><a href="https://github.com/artemmartyhin/jetton-distributor">Jetton distributor</a></h3>
-        <p class="card-text">Token distribution contracts on TON with a TypeScript test harness.</p>
-        <p class="card-tags mono"><span>TON</span><span>FunC</span></p>
+        <p class="card-meta mono">2021–22 · exchange</p>
+        <h3 class="card-title">Order‑book exchange</h3>
+        <p class="card-text">On‑chain order‑book exchange contracts alongside IDO and AMM protocols on Ethereum, BNB Chain and Polygon, integrating Uniswap V2, PancakeSwap, Aave, Balancer and Curve. Ten‑plus security audits along the way.</p>
+        <p class="card-tags mono"><span>Solidity</span><span>AMM</span><span>10+ audits</span></p>
       </article>
 
       <article class="card">
-        <p class="card-meta mono">2021–22 · Blaize</p>
-        <h3 class="card-title">IDO and AMM protocols</h3>
-        <p class="card-text">Enterprise IDO contracts and the core logic of three AMMs on Ethereum, BNB Chain and Polygon, integrating Uniswap V2, PancakeSwap, Aave, Balancer and Curve. Shipped for <a href="https://www.orderbook.io/">Orderbook</a>, <a href="https://www.tabla.is/">Tabla</a> and <a href="https://leaguedao.com/nomo-football">LeagueDAO</a>.</p>
-        <p class="card-tags mono"><span>Solidity</span><span>10+ audits</span></p>
+        <p class="card-meta mono">zero knowledge</p>
+        <h3 class="card-title">ZK wallet</h3>
+        <p class="card-text">Smart‑contract wallet where ownership and recovery are proven with zero‑knowledge proofs instead of exposed keys: on‑chain verifier, account abstraction flow and the client that builds the proofs.</p>
+        <p class="card-tags mono"><span>ZK</span><span>account abstraction</span><span>Solidity</span></p>
       </article>
 
     </div>
