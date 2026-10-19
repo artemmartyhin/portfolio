@@ -1,8 +1,4 @@
 {
-  "framework": null,
-  "installCommand": "",
-  "buildCommand": "rm -rf dist && mkdir dist && cp -r index.html styles.css script.js assets dist/",
-  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
